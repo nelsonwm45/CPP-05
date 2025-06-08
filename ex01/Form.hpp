@@ -1,9 +1,8 @@
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
 #include <iostream>
 #include <stdexcept> // for std::exception
-#include "Bureaucrat.hpp"
 
 # define RED "\033[31m"
 # define GREEN "\033[32m"
@@ -13,6 +12,8 @@
 # define MAGENTA "\033[35m"
 # define WHITE "\033[37m"
 # define RESET "\033[0m"
+
+class Bureaucrat; // Always use forward declaration in header, Use "include" in .cpp
 
 /**
  * const char* what() const throw()
@@ -41,19 +42,17 @@ class	Form
 		const int			_gradeToExecute;
 	
 	public:
-		Form::Form(const std::string p_name, const int p_gradeToSign, const int p_gradeToExecute) // constructor
+		Form(const std::string p_name, const int p_gradeToSign, const int p_gradeToExecute); // constructor
 		Form(const Form &other); // copy contructor
 		Form &operator=(const Form &other); // copy assignment operator
 		~Form(); // destructor
 
 		const std::string	getName(void) const;
 		bool				getIsSigned(void) const;
-		const int			getGradeToSign(void) const;
-		const int			getGradeToExecute(void) const;
+		int			getGradeToSign(void) const;
+		int			getGradeToExecute(void) const;
 
-		void				setIsSigned(bool p_isSigned);
-
-		std::string			printFormSignedStatus(void);
+		std::string			printFormSignedStatus(void) const;
 
 		// Exception classes 
 		// pdf asked us to throw 2 exceptions: GradeTooLowException, GradeTooHighException
@@ -64,6 +63,12 @@ class	Form
 		};
 
 		class	GradeTooLowException: public std::exception
+		{
+			public:
+				const char *what() const throw();
+		};
+
+		class	FormAlreadySigned: public std::exception
 		{
 			public:
 				const char *what() const throw();

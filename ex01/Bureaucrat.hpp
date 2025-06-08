@@ -13,6 +13,8 @@
 # define WHITE "\033[37m"
 # define RESET "\033[0m"
 
+class Form;
+
 /**
  * const char* what() const throw()
  * @brief is a part of std::exception in C++
@@ -31,7 +33,6 @@
 }
 
  */
-
 class	Bureaucrat
 {
 	private:

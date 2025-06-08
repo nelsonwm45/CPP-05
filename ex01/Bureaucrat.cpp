@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "Form.hpp" // Need full header 
 
 /*
 	Grade : 1 is highest, 150 is the lowest
@@ -113,6 +113,12 @@ std::ostream	&operator<<(std::ostream &output, const Bureaucrat &other)
 
 /*
 	Using try & catch for catching exception on Form::beSigned
+
+	If one catch certain exception use
+	catch (class::class &e) {}
+
+	if want catch all
+	catch (std::exception &e)
 */
 void	Bureaucrat::signForm(Form &objForm)
 {
@@ -121,7 +127,12 @@ void	Bureaucrat::signForm(Form &objForm)
 		objForm.beSigned(*this); // passing the values of the current Bureaucrat
 		std::cout << this->_name << " signed " << objForm.getName() << " form." << std::endl;
 	}
-	catch (Form::GradeTooLowException& e) // catch this exception only
+	catch (Form::GradeTooLowException& e)
+	{
+		std::cout << this->_name << " couldn't sign " << objForm.getName();
+		std::cout << " because " << e.what() << std::endl;
+	}
+	catch (Form::FormAlreadySigned &e)
 	{
 		std::cout << this->_name << " couldn't sign " << objForm.getName();
 		std::cout << " because " << e.what() << std::endl;
