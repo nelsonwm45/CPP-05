@@ -1,24 +1,24 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(const std::string p_name, const int p_gradeToSign, const int p_gradeToExecute):
+AForm::AForm(const std::string p_name, const int p_gradeToSign, const int p_gradeToExecute):
 	_name(p_name), _isSigned(false), _gradeToSign(p_gradeToSign), _gradeToExecute(p_gradeToExecute)
 {
 	if (p_gradeToSign < 1 || p_gradeToExecute < 1)
-		throw (Form::GradeTooHighException());
+		throw (AForm::GradeTooHighException());
 	else if (p_gradeToSign > 150 || p_gradeToExecute > 150)
-		throw (Form::GradeTooLowException());
-	std::cout << MAGENTA << "[Form] " << GREEN << "Parameter constructor called\n" << RESET;
+		throw (AForm::GradeTooLowException());
+	std::cout << MAGENTA << "[AForm] " << GREEN << "Parameter constructor called\n" << RESET;
 	std::cout << _name << " : ";
 	std::cout << "GradeToSign->" << _gradeToSign << " : ";
 	std::cout << "GradeToExecute->" << _gradeToExecute << std::endl;
 }
 
-Form::Form(const Form &other):
+AForm::AForm(const AForm &other):
 	_name(other._name), _isSigned(other._isSigned), 
 	_gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
 {
-	std::cout << MAGENTA << "[Form] " << GREEN << "Copy constructor called\n" << RESET;
+	std::cout << MAGENTA << "[AForm] " << GREEN << "Copy constructor called\n" << RESET;
 	std::cout << _name << " : ";
 	std::cout << "GradeToSign->" << _gradeToSign << " : ";
 	std::cout << "GradeToExecute->" << _gradeToExecute << std::endl;
@@ -27,9 +27,9 @@ Form::Form(const Form &other):
 /*
 	All three _name, _GradeToSign and _GradeToExecute are const, so not needed to modify in copy assignment?
 */
-Form	&Form::operator=(const Form &other)
+AForm	&AForm::operator=(const AForm &other)
 {
-	std::cout << MAGENTA << "[Form] " << GREEN << "Copy assignment operator called\n" << RESET;
+	std::cout << MAGENTA << "[AForm] " << GREEN << "Copy assignment operator called\n" << RESET;
 	if (this != &other)
 	{
 		this->_isSigned = other._isSigned;
@@ -41,48 +41,48 @@ Form	&Form::operator=(const Form &other)
 }
 
 
-Form::~Form(void)
+AForm::~AForm(void)
 {
-	std::cout << MAGENTA << "[Form] " << GREEN << "Destructor called\n" << RESET;
+	std::cout << MAGENTA << "[AForm] " << GREEN << "Destructor called\n" << RESET;
 	std::cout << _name << " : " << " is destroyed!" << std::endl;
 }
 
-const std::string	Form::getName(void) const
+const std::string	AForm::getName(void) const
 {
 	return (this->_name);
 }
 
-bool	Form::getIsSigned(void) const
+bool	AForm::getIsSigned(void) const
 {
 	return (this->_isSigned);
 }
 
-int	Form::getGradeToSign(void) const
+int	AForm::getGradeToSign(void) const
 {
 	return (this->_gradeToSign);
 }
 
-int	Form::getGradeToExecute(void) const
+int	AForm::getGradeToExecute(void) const
 {
 	return (this->_gradeToExecute);
 }
 
-const char *Form::GradeTooHighException::what() const throw()
+const char *AForm::GradeTooHighException::what() const throw()
 {
 	return ("Form Class Exception: Grade Too High!");
 }
 
-const char *Form::GradeTooLowException::what() const throw()
+const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Form Class Exception: Grade Too Low!");
 }
 
-const char *Form::FormAlreadySigned::what() const throw()
+const char *AForm::AFormAlreadySigned::what() const throw()
 {
-	return ("Form Class Exception: The Form Was Already Signed Before!");
+	return ("Form Class Exception: The AForm Was Already Signed Before!");
 }
 
-std::string	Form::printFormSignedStatus(void) const
+std::string	AForm::printAFormSignedStatus(void) const
 {
 	if (this->_isSigned == true)
 		return ("Yes");
@@ -93,30 +93,30 @@ std::string	Form::printFormSignedStatus(void) const
 /*
 	It changes the form status to signed if the bureaucrat’s grade is high enough
 	(higher or egal to the required one). Remember, grade 1 is higher than grade 2.
-	If the grade is too low, throw a Form::GradeTooLowException.
+	If the grade is too low, throw a AForm::GradeTooLowException.
 */
-void	Form::beSigned(Bureaucrat &ObjBureaucrat)
+void	AForm::beSigned(Bureaucrat &ObjBureaucrat)
 {
 	if (ObjBureaucrat.getGrade() <= this->_gradeToSign)
 	{
 		if (this->_isSigned == false)
 			this->_isSigned = true;
 		else
-			throw (Form::FormAlreadySigned());
+			throw (AForm::AFormAlreadySigned());
 	}
 	else
-		throw (Form::GradeTooLowException());
+		throw (AForm::GradeTooLowException());
 }
 
 /*
-	Prints all Form information
+	Prints all AForm information
 */
-std::ostream	&operator<<(std::ostream &output, const Form &other)
+std::ostream	&operator<<(std::ostream &output, const AForm &other)
 {
 	output << std::endl;
-	output << "-----" << other.getName() << " 's Form Information-----" << std::endl;
-	output << "Form Name: " << other.getName() << std::endl;
-	output << "Is Signed: " << other.printFormSignedStatus() << std::endl;
+	output << "-----" << other.getName() << " 's AForm Information-----" << std::endl;
+	output << "AForm Name: " << other.getName() << std::endl;
+	output << "Is Signed: " << other.printAFormSignedStatus() << std::endl;
 	output << "GradeToSign: " << other.getGradeToSign() << std::endl;
 	output << "GradeToExecute: " << other.getGradeToExecute() << std::endl;
 	return (output);

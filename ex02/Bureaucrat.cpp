@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp" // Need full header 
+#include "AForm.hpp" // Need full header 
 
 /*
 	Grade : 1 is highest, 150 is the lowest
@@ -61,7 +61,7 @@ void	Bureaucrat::setGrade(int p_grade)
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Bureaucrat Class Exception: Grade Too High!");
+	return ("Bureaucrat Class Exception : Grade Too High!");
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
@@ -112,7 +112,7 @@ std::ostream	&operator<<(std::ostream &output, const Bureaucrat &other)
 //--------------------------------EX01-------------------------------------------
 
 /*
-	Using try & catch for catching exception on Form::beSigned
+	Using try & catch for catching exception on AForm::beSigned
 
 	If one catch certain exception use
 	catch (class::class &e) {}
@@ -120,19 +120,19 @@ std::ostream	&operator<<(std::ostream &output, const Bureaucrat &other)
 	if want catch all
 	catch (std::exception &e)
 */
-void	Bureaucrat::signForm(Form &objForm)
+void	Bureaucrat::signForm(AForm &objForm)
 {
 	try 
 	{
 		objForm.beSigned(*this); // passing the values of the current Bureaucrat
 		std::cout << this->_name << " signed " << objForm.getName() << " form." << std::endl;
 	}
-	catch (Form::GradeTooLowException& e)
+	catch (AForm::GradeTooLowException& e)
 	{
 		std::cout << this->_name << " couldn't sign " << objForm.getName();
 		std::cout << " because " << e.what() << std::endl;
 	}
-	catch (Form::FormAlreadySigned &e)
+	catch (AForm::AFormAlreadySigned &e)
 	{
 		std::cout << this->_name << " couldn't sign " << objForm.getName();
 		std::cout << " because " << e.what() << std::endl;
