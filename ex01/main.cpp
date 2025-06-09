@@ -3,6 +3,7 @@
 
 void	decrease_grade()
 {
+	std::cout << "\n";
 	std::cout << YELLOW << "# Decrease Grade" << RESET << std::endl << "\n";
 	Bureaucrat b1("Moon", 34);
 
@@ -15,6 +16,7 @@ void	decrease_grade()
 
 void	increase_grade()
 {
+	std::cout << "\n";
 	std::cout << YELLOW << "# Increase Grade" << RESET << std::endl << "\n";
 	Bureaucrat b1("Sun", 10);
 
@@ -27,6 +29,7 @@ void	increase_grade()
 
 void	exception_bureaucrat()
 {
+	std::cout << "\n";
 	// Too high
 	try
 	{
@@ -70,6 +73,7 @@ void	exception_bureaucrat()
 
 void	exception_form()
 {
+	std::cout << "\n";
 	// Too Low
 	try
 	{
@@ -99,6 +103,7 @@ void	exception_form()
 	}
 
 
+	std::cout << "\n";
 	// Too High
 	try
 	{
@@ -128,6 +133,7 @@ void	exception_form()
 
 void	exception_class()
 {
+	std::cout << "\n";
 	std::cout << YELLOW << "# Exception Class" << RESET << std::endl << "\n";
 
 	exception_bureaucrat();
@@ -136,6 +142,7 @@ void	exception_class()
 
 void	bureaucrat_ocf()
 {
+	std::cout << "\n";
 	Bureaucrat	b1("Bamboo", 10); // Constructor
 	Bureaucrat	b2(b1); // Copy Constructor
 	Bureaucrat	b3("Unknown", 30);
@@ -147,6 +154,7 @@ void	bureaucrat_ocf()
 
 void	form_ocf()
 {
+	std::cout << "\n";
 	Form	f1("Agreement", 50, 50);
 	Form	f2(f1);
 	Form	f3("Question", 20, 20);
@@ -157,6 +165,7 @@ void	form_ocf()
 
 void	ocf_test()
 {
+	std::cout << "\n";
 	std::cout << YELLOW << "# Ocf Test" << RESET << std::endl << "\n";
 	
 	bureaucrat_ocf();
@@ -165,6 +174,7 @@ void	ocf_test()
 
 void	form_beSigned_test()
 {
+	std::cout << "\n";
 	std::cout << YELLOW << "# Form::beSigned Test" << RESET << std::endl << "\n";
 
 	// Bureaucrat can't sign cus too low grade
