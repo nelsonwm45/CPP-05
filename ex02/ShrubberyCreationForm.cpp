@@ -25,6 +25,7 @@ ShrubberyCreationForm	&ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	std::cout << MAGENTA << "[ShrubberyCreationForm] " << GREEN << "Copy assignment operator called\n" << RESET;
 	if (this != &other)
 	{
+		AForm::operator=(other);
 		this->_target = other._target;
 		std::cout << this->_target << "->" << this->getName()
 			<< " | Sign: " << this->getGradeToSign() << " | Execute: "
