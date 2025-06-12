@@ -1,6 +1,15 @@
 #include "RobotomyRequestForm.hpp"
 #include "AForm.hpp"
 
+RobotomyRequestForm::RobotomyRequestForm(void):
+	AForm("RR_Form", 72, 45), _target("Default_RR")
+{
+	std::cout << MAGENTA << "[RobotomyRequestForm] " << GREEN << "Default constructor called\n" << RESET;
+	std::cout << this->_target << "->" << this->getName()
+		<< " | Sign: " << this->getGradeToSign() << " | Execute: "
+		<< this->getGradeToExecute() <<  " | is created!\n";
+}
+
 RobotomyRequestForm::RobotomyRequestForm(std::string p_target):
 	AForm("RR_Form", 72, 45), _target(p_target)
 {

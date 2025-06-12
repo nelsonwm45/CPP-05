@@ -2,6 +2,15 @@
 #include "AForm.hpp"
 // #include "Bureaucrat.hpp"
 
+ShrubberyCreationForm::ShrubberyCreationForm(void):
+	AForm("SC_Form", 145, 137), _target("Default_SC")
+{
+	std::cout << MAGENTA << "[ShrubberyCreationForm] " << GREEN << "Default constructor called\n" << RESET;
+	std::cout << this->_target << "->" << this->getName()
+		<< " | Sign: " << this->getGradeToSign() << " | Execute: "
+		<< this->getGradeToExecute() <<  " | is created!\n";
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string p_target):
 	AForm("SC_Form", 145, 137), _target(p_target)
 {

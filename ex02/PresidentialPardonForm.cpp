@@ -1,6 +1,15 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 
+PresidentialPardonForm::PresidentialPardonForm(void):
+	AForm("PP_Form", 25, 5), _target("Default_PP")
+{
+	std::cout << MAGENTA << "[PresidentialPardonForm] " << GREEN << "Default constructor called\n" << RESET;
+	std::cout << this->_target << "->" << this->getName()
+		<< " | Sign: " << this->getGradeToSign() << " | Execute: "
+		<< this->getGradeToExecute() <<  " | is created!\n";
+}
+
 PresidentialPardonForm::PresidentialPardonForm(std::string p_target):
 	AForm("PP_Form", 25, 5), _target(p_target)
 {

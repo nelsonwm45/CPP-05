@@ -43,6 +43,7 @@ class	AForm
 		const int			_gradeToExecute;
 	
 	public:
+		AForm(void);
 		AForm(const std::string p_name, const int p_gradeToSign, const int p_gradeToExecute); // constructor
 		AForm(const AForm &other); // copy contructor
 		AForm &operator=(const AForm &other); // copy assignment operator

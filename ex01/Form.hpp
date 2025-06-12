@@ -42,6 +42,7 @@ class	Form
 		const int			_gradeToExecute;
 	
 	public:
+		Form(void);
 		Form(const std::string p_name, const int p_gradeToSign, const int p_gradeToExecute); // constructor
 		Form(const Form &other); // copy contructor
 		Form &operator=(const Form &other); // copy assignment operator

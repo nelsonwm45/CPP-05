@@ -21,6 +21,7 @@ class	PresidentialPardonForm: public AForm
 {
 	private:
 		std::string	_target;
+		PresidentialPardonForm(void); // Not needed in public because pdf mentioned one param constructor
 
 	public:
 		PresidentialPardonForm(std::string p_target); // constructor

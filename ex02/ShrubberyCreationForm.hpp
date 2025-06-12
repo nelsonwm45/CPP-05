@@ -21,6 +21,7 @@ class	ShrubberyCreationForm: public AForm
 {
 	private:
 		std::string	_target;
+		ShrubberyCreationForm(void);
 
 	public:
 		ShrubberyCreationForm(std::string p_target); // constructor

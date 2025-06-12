@@ -21,6 +21,7 @@ class	RobotomyRequestForm: public AForm
 {
 	private:
 		std::string	_target;
+		RobotomyRequestForm(void);
 
 	public:
 		RobotomyRequestForm(std::string p_target); // constructor

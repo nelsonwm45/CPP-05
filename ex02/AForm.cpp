@@ -1,6 +1,15 @@
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
+AForm::AForm(void):
+	_name("Default_Form"), _isSigned(false), _gradeToSign("2"), _gradeToExecute("2")
+{
+	std::cout << MAGENTA << "[AForm] " << GREEN << "Default constructor called\n" << RESET;
+	std::cout << _name << " : ";
+	std::cout << "GradeToSign->" << _gradeToSign << " : ";
+	std::cout << "GradeToExecute->" << _gradeToExecute << std::endl;
+}
+
 AForm::AForm(const std::string p_name, const int p_gradeToSign, const int p_gradeToExecute):
 	_name(p_name), _isSigned(false), _gradeToSign(p_gradeToSign), _gradeToExecute(p_gradeToExecute)
 {
