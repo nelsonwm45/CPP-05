@@ -13,7 +13,7 @@ WHITE='\033[0;97m'
 PINK  = '\033[35m'
 
 # Program Name
-NAME = Bureaucrat_Sign_Form
+NAME = Shrubbery_Presidential_Robotomy
 
 # Compiler
 CC = c++
@@ -24,7 +24,10 @@ RM = rm -f
 # Source and Object
 SRCS =	main.cpp \
 		Bureaucrat.cpp \
-		Form.cpp \
+		AForm.cpp \
+		PresidentialPardonForm.cpp \
+		RobotomyRequestForm.cpp \
+		ShrubberyCreationForm.cpp \
 
 OBJ = $(SRCS:.cpp=.o)
 
@@ -50,5 +53,6 @@ clean:
 fclean: clean
 	@ echo $(MAGENTA)" 🥯 Removing "$(RED)"[$(NAME)]"$(GREEN)"..."$(RESET)
 	@ $(RM) $(NAME)
+# $(RM) KL_shrubbery
 
 re : fclean all

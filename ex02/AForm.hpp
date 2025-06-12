@@ -76,7 +76,16 @@ class	AForm
 				virtual const char *what() const throw();
 		};
 
+		class	AFormNotSignedYet: public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+
 		void	beSigned(Bureaucrat &ObjBureaucrat);
+
+		virtual void	execute(Bureaucrat const &executor) const = 0;
+		void			execute_check(Bureaucrat const &executor) const;
 };
 
 std::ostream	&operator<<(std::ostream &output, const AForm &other);

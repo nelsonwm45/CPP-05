@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp" // Need full header 
+#include "ShrubberyCreationForm.hpp"
 
 /*
 	Grade : 1 is highest, 150 is the lowest
@@ -135,6 +136,32 @@ void	Bureaucrat::signForm(AForm &objForm)
 	catch (AForm::AFormAlreadySigned &e)
 	{
 		std::cout << this->_name << " couldn't sign " << objForm.getName();
+		std::cout << " because " << e.what() << std::endl;
+	}
+}
+
+
+//************************************** EX02 *************************************************** */
+
+void	Bureaucrat::executeForm(AForm const &form)
+{
+	try
+	{
+		form.execute(*this);
+	}
+	catch (AForm::AFormNotSignedYet &e)
+	{
+		std::cout << this->_name << " couldn't execute " << form.getName();
+		std::cout << " because " << e.what() << std::endl;
+	}
+	catch (AForm::GradeTooLowException &e)
+	{
+		std::cout << this->_name << " couldn't execute " << form.getName();
+		std::cout << " because " << e.what() << std::endl;
+	}
+	catch (ShrubberyCreationForm::FileFailedOpenException &e)
+	{
+		std::cout << this->_name << " couldn't execute " << form.getName();
 		std::cout << " because " << e.what() << std::endl;
 	}
 }

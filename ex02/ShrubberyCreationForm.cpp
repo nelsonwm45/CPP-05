@@ -1,6 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
-#include "AForm.hpp"
-// #include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm(void):
 	AForm("SC_Form", 145, 137), _target("Default_SC")
@@ -64,16 +63,22 @@ const char *ShrubberyCreationForm::FileFailedOpenException::what() const throw (
 /*
 	std::ofstream::out – Open for writing.
 	std::ofstream::trunc – Truncate (clear) the file if it already exists.
+
+
+	std::ofstream::open() in C++98 expects a C-style string (const char*), not a std::string
+	Convert the std::string to a C-style string using .c_str():
 */
-void	ShrubberyCreationForm::execute(void)
+void	ShrubberyCreationForm::execute(Bureaucrat const& executor) const
 {
+	AForm::execute_check(executor);
 	std::ofstream	outfile;
 	std::string		filename;
 
 	filename = this->getTarget() + "_shrubbery";
-	outfile.open(filename, std::ofstream::out | std::ofstream::trunc);
+	outfile.open(filename.c_str(), std::ofstream::out | std::ofstream::trunc);
 	if (!outfile.is_open())
 		throw (ShrubberyCreationForm::FileFailedOpenException());
+	std::cout << executor.getName() << " executed " << this->getName() << " form\n";
 	outfile << "\n"
 		<< "         ###\n"
 		<< "        #o###\n"
@@ -88,4 +93,15 @@ void	ShrubberyCreationForm::execute(void)
 		<< "       |||   |||\n";
 
 	std::cout << filename << " created in working directory\n";
+}
+
+std::ostream	&operator<<(std::ostream &output, const ShrubberyCreationForm &other)
+{
+	output << std::endl;
+	output << "-----" << other.getName() << " 's AForm Information-----" << std::endl;
+	output << "AForm Name: " << other.getName() << std::endl;
+	output << "Is Signed: " << other.printAFormSignedStatus() << std::endl;
+	output << "GradeToSign: " << other.getGradeToSign() << std::endl;
+	output << "GradeToExecute: " << other.getGradeToExecute() << std::endl;
+	return (output);
 }

@@ -2,7 +2,7 @@
 #include "Bureaucrat.hpp"
 
 AForm::AForm(void):
-	_name("Default_Form"), _isSigned(false), _gradeToSign("2"), _gradeToExecute("2")
+	_name("Default_Form"), _isSigned(false), _gradeToSign(2), _gradeToExecute(2)
 {
 	std::cout << MAGENTA << "[AForm] " << GREEN << "Default constructor called\n" << RESET;
 	std::cout << _name << " : ";
@@ -129,4 +129,40 @@ std::ostream	&operator<<(std::ostream &output, const AForm &other)
 	output << "GradeToSign: " << other.getGradeToSign() << std::endl;
 	output << "GradeToExecute: " << other.getGradeToExecute() << std::endl;
 	return (output);
+}
+
+
+/********************************  EX02  **************************************/
+
+const char *AForm::AFormNotSignedYet::what() const throw()
+{
+	return ("Form Class Exception: The Form is Not Signed Yet!");
+}
+
+/*
+	add the execute(Bureaucrat const & executor) const member function to
+ 	the base form and implement a function to execute the form’s action of the concrete
+ 	classes. You have to check that the form is signed and that the grade of the bureaucrat
+ 	attempting to execute the form is high enough. Otherwise, throw an appropriate excep
+	tion
+
+	since Bureaucrat will execute form using AForm::execute, so this function will be virtual fx
+	virtual fx does not need implementation
+
+	void	AForm::execute(Bureaucrat const &executor) const
+{
+	if (executor.getGrade() > this->getGradeToExecute())
+		throw (AForm::GradeTooLowException());
+	if (this->printAFormSignedStatus() == false)
+		throw (AForm::AFormNotSignedYet());
+}
+
+	BUT still have to do execute check before executing, so add one more function for execute check
+*/
+void	AForm::execute_check(Bureaucrat const &executor) const
+{
+	if (executor.getGrade() > this->getGradeToExecute())
+		throw (AForm::GradeTooLowException());
+	if (this->getIsSigned() == false)
+		throw (AForm::AFormNotSignedYet());
 }

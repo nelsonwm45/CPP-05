@@ -1,5 +1,5 @@
 #include "RobotomyRequestForm.hpp"
-#include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(void):
 	AForm("RR_Form", 72, 45), _target("Default_RR")
@@ -20,7 +20,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string p_target):
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other):
-	AForm("RR_Form", 72, 45), _target(other.p_target)
+	AForm("RR_Form", 72, 45), _target(other._target)
 {
 	std::cout << MAGENTA << "[RobotomyRequestForm] " << GREEN << "Copy constructor called\n" << RESET;
 	std::cout << this->_target << "->" << this->getName()
@@ -31,7 +31,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other):
 RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
 	std::cout << MAGENTA << "[RobotomyRequestForm] " << GREEN << "Copy assignment operator called\n" << RESET;
-	if (this != other)
+	if (this != &other)
 	{
 		AForm::operator=(other);
 		this->_target = other._target;
@@ -55,8 +55,10 @@ std::string	RobotomyRequestForm::getTarget(void) const
 	return (this->_target);
 }
 
-void	RobotomyRequestForm::execute(void)
+void	RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
+	AForm::execute_check(executor);
+	std::cout << executor.getName() << " executed " << this->getName() << " form\n";
 	std::cout << MAGENTA << "[RobotomyRequestForm] " << GREEN << "Making Some Drilling Noise"
 		<< " ->DRRRRRRRRIIIIILLLLLLLL!" << RESET << std::endl;
 	static int	SuccessCount = 0;
@@ -65,4 +67,17 @@ void	RobotomyRequestForm::execute(void)
 		std::cout << RED << "ROBOTOMY FAILED!" << RESET << std::endl;
 	else
 		std::cout << GREEN << "ROBOTOMY SUCCESS!" << RESET << std::endl;
+	SuccessCount++;
+}
+
+
+std::ostream	&operator<<(std::ostream &output, const RobotomyRequestForm &other)
+{
+	output << std::endl;
+	output << "-----" << other.getName() << " 's AForm Information-----" << std::endl;
+	output << "AForm Name: " << other.getName() << std::endl;
+	output << "Is Signed: " << other.printAFormSignedStatus() << std::endl;
+	output << "GradeToSign: " << other.getGradeToSign() << std::endl;
+	output << "GradeToExecute: " << other.getGradeToExecute() << std::endl;
+	return (output);
 }

@@ -14,8 +14,11 @@
 # define WHITE "\033[37m"
 # define RESET "\033[0m"
 
-class	AForm;
-// class	Bureaucrat;
+#include "AForm.hpp"
+// inheritance must provide full include, means implementation is needed, so must use #include AFORM here
+// class	AForm; 
+
+class	Bureaucrat;
 
 class	ShrubberyCreationForm: public AForm
 {
@@ -36,11 +39,11 @@ class	ShrubberyCreationForm: public AForm
 		{
 			public:
 				const char* what() const throw();
-		}
+		};
 
-		void	execute(void);
+		void	execute(Bureaucrat const &executor) const;
 };
 
-
+std::ostream	&operator<<(std::ostream &output, const ShrubberyCreationForm &other);
 
 #endif

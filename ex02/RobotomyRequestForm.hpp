@@ -14,8 +14,12 @@
 # define WHITE "\033[37m"
 # define RESET "\033[0m"
 
-class	AForm;
-// class	Bureaucrat;
+#include "AForm.hpp"
+
+// inheritance must provide full include, means implementation is needed, so must use #include AFORM here
+// class	AForm; 
+
+class	Bureaucrat;
 
 class	RobotomyRequestForm: public AForm
 {
@@ -32,15 +36,9 @@ class	RobotomyRequestForm: public AForm
 		// Getters & Setters
 		std::string	getTarget(void) const;
 
-		class	FileFailedOpenException: public	std::exception
-		{
-			public:
-				const char* what() const throw();
-		}
-
-		void	execute(void);
+		void	execute(Bureaucrat const &executor) const;
 };
 
-
+std::ostream	&operator<<(std::ostream &output, const RobotomyRequestForm &other);
 
 #endif
