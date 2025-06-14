@@ -39,6 +39,7 @@ class	Bureaucrat
 		int					_grade;
 	
 	public:
+		Bureaucrat(void);
 		Bureaucrat(std::string p_name, int p_grade); // constructor
 		Bureaucrat(const Bureaucrat &other); // copy contructor
 		Bureaucrat &operator=(const Bureaucrat &other); // copy assignment operator

@@ -1,5 +1,12 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat(void):
+	_name("Default_Bureaucrat"), _grade(150)
+{
+	std::cout << MAGENTA << "[Bureaucrat] " << GREEN << "Default constructor called\n" << RESET;
+	std::cout << _name << " : " << _grade << std::endl;
+}
+
 /*
 	Grade : 1 is highest, 150 is the lowest
 */
